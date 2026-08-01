@@ -1,0 +1,14 @@
+v2.3.3 — rename the underscore pages so Jekyll cannot drop them
+
+_page.js is the shared page shell every page except onboarding imports.
+On GitHub Pages it 404s, so onboarding rendered fine and every other
+page rendered nothing: Finish saved the profile, navigated, and the
+dashboard module failed to load.
+
+2.3.2 added .nojekyll, which is correct but easy to lose in a copy or a
+zip. Renamed as well, so the deployment works either way:
+
+  pages/_page.js  ->  pages/page-frame.js
+  pages/_live.js  ->  pages/live-region.js
+
+Same exports, same signatures. No API or schema change.
