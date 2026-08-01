@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr" data-theme="dark">
+<head>
+  <meta charset="UTF-8" />
+  <!-- viewport-fit=cover is required so the layout can reach under the
+       iPhone notch / home indicator and use env(safe-area-inset-*). -->
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+
+  <title>Dashboard — Foundation</title>
+  <meta name="description" content="Personal training and nutrition tracker. Phase 2: routing, pages and components." />
+
+  <!-- ── PWA ────────────────────────────────────────────────────────── -->
+  <link rel="manifest" href="manifest.json" />
+  <meta name="theme-color" content="#0e1013" />
+  <meta name="color-scheme" content="dark light" />
+
+  <!-- iOS standalone mode (Safari ignores parts of the manifest) -->
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+  <meta name="apple-mobile-web-app-title" content="Foundation" />
+  <link rel="apple-touch-icon" href="assets/icons/apple-touch-icon.png" />
+  <link rel="icon" type="image/png" sizes="192x192" href="assets/icons/icon-192.png" />
+
+  <!-- ── Styles (style.css is the single entry point) ───────────────── -->
+  <link rel="stylesheet" href="style.css" />
+
+  <!-- Warm up the modules the first paint depends on. -->
+  <link rel="modulepreload" href="script.js" />
+  <link rel="modulepreload" href="scripts/router.js" />
+  <link rel="modulepreload" href="pages/dashboard.js" />
+</head>
+
+<body>
+  <!-- ══ APP SHELL ═════════════════════════════════════════════════════
+       The header, the page outlet and the tab bar are rendered by
+       components at boot. Only the mount points live in the markup.
+  ═══════════════════════════════════════════════════════════════════ -->
+  <div class="app" id="app">
+    <!-- Visible until the first page renders; replaced by the router. -->
+    <noscript>
+      <p style="padding:2rem;text-align:center">This app needs JavaScript enabled.</p>
+    </noscript>
+  </div>
+
+  <!-- Entry point. type="module" → must be served over http(s), not file:// -->
+  <script type="module" src="script.js"></script>
+</body>
+</html>

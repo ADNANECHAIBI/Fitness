@@ -1,0 +1,11 @@
+{
+  "name": "foundation-training",
+  "version": "2.3.3",
+  "description": "Personal training and nutrition tracker. No dependencies, no build step.",
+  "type": "module",
+  "private": true,
+  "scripts": {
+    "test": "node --input-type=module -e \"import('./tests/run-node.js')\"",
+    "start": "python3 -m http.server 8000"
+  }
+}

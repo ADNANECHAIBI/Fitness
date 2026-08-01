@@ -1,0 +1,12 @@
+/* ============================================================================
+   style.css — single stylesheet entry point.
+   It contains no rules of its own; it only declares the load order.
+   Order matters: tokens → themes → base → layout → components → transitions.
+   ========================================================================= */
+
+@import url("styles/tokens.css");
+@import url("styles/themes.css");
+@import url("styles/base.css");
+@import url("styles/layout.css");
+@import url("styles/components.css");
+@import url("styles/transitions.css");
