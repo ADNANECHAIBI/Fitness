@@ -1,0 +1,83 @@
+/* ============================================================================
+   base.css — reset, document defaults, shared text styles.
+   ========================================================================= */
+
+*,
+*::before,
+*::after { box-sizing: border-box; }
+
+* { margin: 0; padding: 0; }
+
+html {
+  -webkit-text-size-adjust: 100%;
+  background: var(--ink-950);
+}
+
+body {
+  min-height: 100dvh;
+  background: var(--ink-950);
+  color: var(--text);
+  font-family: var(--font-ui);
+  font-size: var(--t-body);
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+
+  /* Feels native on iOS: no blue flash, no rubber-band overscroll colour. */
+  -webkit-tap-highlight-color: transparent;
+  overscroll-behavior-y: none;
+
+  transition: background-color var(--fast) linear, color var(--fast) linear;
+}
+
+/* Very low-contrast grain keeps large dark areas from banding.
+   Hidden in the light theme, where there is nothing to band. */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  opacity: var(--grain-opacity);
+  background-image: url("../assets/images/grain.png");
+  background-size: 128px 128px;
+}
+
+img, svg { display: block; max-width: 100%; }
+
+button {
+  font: inherit;
+  color: inherit;
+  background: none;
+  border: 0;
+  cursor: pointer;
+}
+
+/* ── Shared text roles ─────────────────────────────────────────────────── */
+
+.eyebrow {
+  font-family: var(--font-data);
+  font-size: var(--t-eyebrow);
+  letter-spacing: var(--track-wide);
+  text-transform: uppercase;
+  color: var(--dim);
+}
+
+/* ── Accessibility floor ───────────────────────────────────────────────── */
+
+:focus-visible {
+  outline: 2px solid var(--brass);
+  outline-offset: 3px;
+  border-radius: var(--r-sm);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: .001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: .001ms !important;
+    scroll-behavior: auto !important;
+  }
+}

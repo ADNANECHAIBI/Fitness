@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Tests — Foundation</title>
+  <link rel="stylesheet" href="../style.css" />
+  <style>
+    body { padding: 2rem 1rem; }
+    .wrap { max-width: 720px; margin-inline: auto; }
+    h1 { font-size: 1.75rem; font-weight: 600; letter-spacing: -.02em; }
+    .summary { margin: 1rem 0 2rem; font-family: var(--font-data); font-size: .875rem; }
+    .suite { margin-top: 1.5rem; }
+    .suite h2 { font-size: .688rem; letter-spacing: .14em; text-transform: uppercase;
+                color: var(--dim); font-family: var(--font-data); }
+    .case { display: flex; gap: .75rem; padding: .5rem 0; border-top: 1px solid var(--line);
+            font-size: .875rem; align-items: flex-start; }
+    .mark { font-family: var(--font-data); flex: none; }
+    .ok .mark { color: var(--brass); }
+    .bad { color: var(--text); }
+    .bad .mark { color: #e5484d; }
+    pre { white-space: pre-wrap; font-size: .75rem; color: var(--muted);
+          margin-top: .25rem; font-family: var(--font-data); }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <h1>Test suite</h1>
+    <p class="summary" id="summary">Running…</p>
+    <div id="results"></div>
+  </div>
+
+  <script type="module">
+    import { Logger } from '../scripts/logger.js';
+    import { run } from './index.js';
+
+    // Deliberate failures are part of several tests; keep their noise out.
+    Logger.setLevel(Logger.LEVEL.SILENT);
+
+    const { passed, failed, skipped, total, results } = await run();
+
+    document.getElementById('summary').textContent =
+      `${passed}/${total} passed${skipped ? `, ${skipped} skipped` : ''}` +
+      `${failed ? ` — ${failed} FAILED` : ' — all green'}`;
+
+    const host = document.getElementById('results');
+    let currentSuite = null;
+
+    for (const result of results) {
+      if (result.suite !== currentSuite) {
+        currentSuite = result.suite;
+        const section = document.createElement('div');
+        section.className = 'suite';
+        section.innerHTML = `<h2></h2>`;
+        section.querySelector('h2').textContent = currentSuite;
+        host.append(section);
+      }
+
+      const row = document.createElement('div');
+      row.className = `case ${result.ok ? 'ok' : 'bad'}`;
+      const mark = document.createElement('span');
+      mark.className = 'mark';
+      mark.textContent = result.skipped ? 'SKIP' : result.ok ? 'PASS' : 'FAIL';
+      const body = document.createElement('div');
+      body.textContent = result.test;
+      if (!result.ok) {
+        const pre = document.createElement('pre');
+        pre.textContent = result.error;
+        body.append(pre);
+      }
+      row.append(mark, body);
+      host.lastElementChild.append(row);
+    }
+
+    // Expose the outcome so a headless run can read it.
+    window.__TEST_RESULT__ = { passed, failed, total, results };
+  </script>
+</body>
+</html>

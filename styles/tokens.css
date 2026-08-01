@@ -1,0 +1,54 @@
+/* ============================================================================
+   tokens.css — the design system, minus colour.
+   Type, space, shape and motion are identical in every theme; the palettes
+   live in themes.css. Nothing in the codebase may hard-code a value from here.
+   ========================================================================= */
+
+:root {
+  /* ── Type ─────────────────────────────────────────────────────────────
+     No web fonts on purpose: the app must render identically offline and
+     natively on iOS, where the system face (SF Pro) is the best available.
+     Numbers and micro-labels use the system monospace as a "data" face.   */
+  --font-ui: -apple-system, BlinkMacSystemFont, "SF Pro Display", "Segoe UI",
+             system-ui, "Helvetica Neue", Arial, sans-serif;
+  --font-data: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas,
+               "Roboto Mono", monospace;
+
+  --t-eyebrow: .688rem;   /* 11px  */
+  --t-sm:      .813rem;   /* 13px  */
+  --t-body:    .938rem;   /* 15px  */
+  --t-title:   1.063rem;  /* 17px  */
+  --t-hero:    1.75rem;   /* 28px  */
+  --t-display: 2.25rem;   /* 36px  */
+
+  --track-wide: .14em;    /* letter-spacing for eyebrows */
+
+  /* ── Space (4px scale) ────────────────────────────────────────────────── */
+  --s-1: .25rem;
+  --s-2: .5rem;
+  --s-3: .75rem;
+  --s-4: 1rem;
+  --s-5: 1.5rem;
+  --s-6: 2rem;
+  --s-7: 3rem;
+
+  /* ── Shape ────────────────────────────────────────────────────────────── */
+  --r-sm: 10px;
+  --r-md: 16px;
+  --r-lg: 22px;
+  --r-pill: 999px;
+
+  /* ── Motion ───────────────────────────────────────────────────────────── */
+  --ease: cubic-bezier(.22, .61, .36, 1);   /* decelerate, iOS-like */
+  --ease-in: cubic-bezier(.4, 0, 1, 1);
+  --fast: 140ms;
+  --leave: 170ms;    /* must match LEAVE_MS in scripts/router.js */
+  --enter: 280ms;    /* must match ENTER_MS in scripts/router.js */
+  --slow: 420ms;
+
+  /* ── Layout ───────────────────────────────────────────────────────────── */
+  --max-w: 720px;
+  --tabbar-h: 58px;
+  --safe-top: env(safe-area-inset-top, 0px);
+  --safe-bottom: env(safe-area-inset-bottom, 0px);
+}

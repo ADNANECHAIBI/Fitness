@@ -1,0 +1,54 @@
+/* ============================================================================
+   themes.css — the palettes.
+
+   A theme is a block of custom properties under [data-theme="name"].
+   The Theme Manager only flips that attribute, so switching costs no layout.
+   Add a theme by copying a block and giving it a new name, or at runtime with
+   theme.register(name, { tokens }).
+   ========================================================================= */
+
+/* ── Dark (default): graphite base, single brass accent ─────────────────── */
+[data-theme="dark"] {
+  --ink-950: #08090b;   /* page background            */
+  --ink-900: #0e1013;   /* header / tabbar surface    */
+  --ink-800: #15181d;   /* card surface               */
+  --ink-700: #1c2026;   /* raised / pressed surface   */
+  --line:    #282d35;   /* hairline borders           */
+
+  --text:  #eceef1;
+  --muted: #a0a7b1;
+  --dim:   #858c96;
+
+  --brass:      #d9a441;
+  --brass-soft: rgba(217, 164, 65, .14);
+  --brass-glow: rgba(217, 164, 65, .28);
+  --brass-ink:  #14161a;               /* text on a brass fill */
+
+  --shadow: none;
+  --grain-opacity: 1;
+
+  color-scheme: dark;
+}
+
+/* ── Light: paper base, darker brass so contrast holds ──────────────────── */
+[data-theme="light"] {
+  --ink-950: #f1f2f5;
+  --ink-900: #ffffff;
+  --ink-800: #ffffff;
+  --ink-700: #e9ebef;
+  --line:    #dee1e7;
+
+  --text:  #14161a;
+  --muted: #565d67;
+  --dim:   #696f79;
+
+  --brass:      #96690c;
+  --brass-soft: rgba(150, 105, 12, .10);
+  --brass-glow: rgba(150, 105, 12, .22);
+  --brass-ink:  #ffffff;
+
+  --shadow: 0 1px 2px rgba(20, 22, 26, .05), 0 8px 24px rgba(20, 22, 26, .04);
+  --grain-opacity: 0;
+
+  color-scheme: light;
+}

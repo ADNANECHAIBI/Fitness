@@ -1,0 +1,114 @@
+/* ============================================================================
+   layout.css — the app shell: header, page outlet, tab bar, dashboard grid.
+   Positioning only. Surface styling of the pieces lives in components.css.
+   ========================================================================= */
+
+.app {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  min-height: 100dvh;
+}
+
+/* ── Header ────────────────────────────────────────────────────────────── */
+
+.header {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  padding: calc(var(--safe-top) + var(--s-4)) var(--s-4) var(--s-3);
+  background: color-mix(in srgb, var(--ink-900) 82%, transparent);
+  backdrop-filter: saturate(160%) blur(18px);
+  -webkit-backdrop-filter: saturate(160%) blur(18px);
+  border-bottom: 1px solid var(--line);
+}
+
+.header__row {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: var(--s-4);
+  max-width: var(--max-w);
+  margin-inline: auto;
+}
+
+.header__title {
+  font-size: var(--t-hero);
+  font-weight: 600;
+  letter-spacing: -.02em;
+  margin-top: var(--s-1);
+}
+
+/* ── Page outlet ───────────────────────────────────────────────────────────
+   The router mounts exactly one .page inside .outlet. During a transition
+   both pages are absolutely positioned so the layout below never jumps.     */
+
+.outlet {
+  position: relative;
+  flex: 1;
+  width: 100%;
+}
+
+.outlet.is-swapping { overflow: hidden; }
+
+.page {
+  width: 100%;
+  max-width: var(--max-w);
+  margin-inline: auto;
+  padding: var(--s-5) var(--s-4);
+  /* Leave room for the fixed tab bar plus the iPhone home indicator. */
+  padding-bottom: calc(var(--tabbar-h) + var(--safe-bottom) + var(--s-6));
+}
+
+.outlet.is-swapping .page {
+  position: absolute;
+  inset: 0 0 auto 0;
+}
+
+.page__lead {
+  color: var(--muted);
+  font-size: var(--t-sm);
+  margin-bottom: var(--s-4);
+}
+
+/* ── Content layouts ───────────────────────────────────────────────────────
+   .grid  two-column dashboard; .stack  single column of full-width blocks.  */
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--s-3);
+}
+
+.stack {
+  display: flex;
+  flex-direction: column;
+  gap: var(--s-3);
+}
+
+.card--hero,
+.card--wide { grid-column: 1 / -1; }
+
+@media (min-width: 640px) {
+  .grid { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: var(--s-4); }
+  .card--hero { grid-column: span 3; }
+  .card--wide { grid-column: span 2; }
+}
+
+/* ── Tab bar ───────────────────────────────────────────────────────────── */
+
+.tabbar {
+  position: fixed;
+  inset: auto 0 0 0;
+  z-index: 20;
+  display: grid;
+  grid-template-columns: repeat(var(--tab-count, 6), 1fr);
+  align-items: stretch;
+  height: calc(var(--tabbar-h) + var(--safe-bottom));
+  padding-bottom: var(--safe-bottom);
+  background: color-mix(in srgb, var(--ink-900) 88%, transparent);
+  backdrop-filter: saturate(160%) blur(20px);
+  -webkit-backdrop-filter: saturate(160%) blur(20px);
+  border-top: 1px solid var(--line);
+}
