@@ -1,0 +1,5 @@
+0000000000000000000000000000000000000000 4e8fc646772b33dd0919089f26dcadcbae5c74a4 Kazzaz <kazzaz@localhost> 1785409340 +0000	commit (initial): Foundation v2.3.0 — 23 phases complete
+4e8fc646772b33dd0919089f26dcadcbae5c74a4 6c14da0ccd0d3b79e9e2f42929ab51511f62b29d Kazzaz <kazzaz@localhost> 1785409351 +0000	commit (amend): Foundation v2.3.0 — 23 phases complete
+6c14da0ccd0d3b79e9e2f42929ab51511f62b29d 9b6d59e72643de4e015ae5692a30d46799df1d3e Kazzaz <kazzaz@localhost> 1785429393 +0000	commit: v2.3.1 — fix dates parsed local and rendered UTC
+9b6d59e72643de4e015ae5692a30d46799df1d3e c9c238fd253eb7517526fc700a41a9e59b44c2e1 Kazzaz <kazzaz@localhost> 1785545888 +0000	commit: v2.3.2 — add .nojekyll so GitHub Pages publishes pages/_page.js
+c9c238fd253eb7517526fc700a41a9e59b44c2e1 f9abd72e03dd59edb56cbdc901be64a1e100ffca Kazzaz <kazzaz@localhost> 1785546879 +0000	commit: v2.3.3 — rename the underscore pages so Jekyll cannot drop them
